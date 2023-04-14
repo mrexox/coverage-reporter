@@ -40,7 +40,7 @@ jobs:
     - name: Install Crystal
       uses: crystal-lang/install-crystal@v1
       with:
-        crystal: 1.7.2
+        crystal: 1.7.3
     - run: shards install
     - run: make
     - name: Install kcov
