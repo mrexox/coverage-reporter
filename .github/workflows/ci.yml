@@ -52,6 +52,7 @@ jobs:
     - name: Report coverage
       env:
         COVERALLS_REPO_TOKEN: ${{ github.token }}
+        COVERALLS_FLAG_NAME: "crystal"
         COVERALLS_ENDPOINT: "https://staging.coveralls.io"
       run: |
         cd coverage
