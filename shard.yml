@@ -25,3 +25,7 @@ development_dependencies:
 crystal: ">= 1.7.2"
 
 license: MIT
+
+targets:
+  coveralls:
+    main: src/cli.cr

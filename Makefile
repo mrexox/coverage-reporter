@@ -3,19 +3,19 @@ GUID := $(shell id -g)
 CRYSTAL_VERSION := 1.8.1
 
 compile:
-	crystal build src/cli.cr -o dist/coveralls --progress
+	shards build coveralls --progress
 
 release_linux:
 	docker build . --build-arg CRYSTAL_VERSION=$(CRYSTAL_VERSION) --tag coverage-reporter:1.0
 	docker run --rm -t -v $(shell pwd):/app \
 		-w /app --user $(UUID):$(GUID) \
 		coverage-reporter:1.0 \
-		crystal build src/cli.cr -o dist/coveralls --release --static --no-debug --progress
-	cd dist && strip coveralls && tar -cvzf coveralls-linux.tar.gz coveralls
+		shards build coveralls --production --release --static --no-debug --progress
+	cd bin && strip coveralls && tar -cvzf coveralls-linux.tar.gz coveralls
 
 release_mac:
-	crystal build src/cli.cr -o dist/coveralls --release --no-debug --progress
-	cd dist && strip coveralls && tar -cvzf coveralls-mac.tar.gz coveralls
+	shards build coveralls --release --no-debug --progress
+	cd bin && strip coveralls && tar -cvzf coveralls-mac.tar.gz coveralls
 
 release: | release_linux release_mac
 
