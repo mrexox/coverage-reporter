@@ -1,12 +1,7 @@
 name: Build
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
-    tags:
-      - 'v*'
 
 permissions:
   contents: write
